@@ -37,8 +37,9 @@ models:
     +pre-hook: "USE CATALOG dev"
 
 seeds:
-  my_new_project: # <-- Name of the project...
+  my_new_project:
     +database: dev
+    +pre-hook: "USE CATALOG dev"
     banvic:
       +schema: erp_banvic
       +enabled: false
