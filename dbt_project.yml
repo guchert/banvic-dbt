@@ -42,4 +42,4 @@ seeds:
     +pre-hook: "USE CATALOG dev"
     banvic:
       +schema: erp_banvic
-      +enabled: false
+      +enabled: true
