@@ -13,3 +13,7 @@ sources:
         description: Tabela fonte de colaboradores com informações pessoais de cada colaborador da Banvic.
       - name: agencias
         description: Tabela fonte de agências com nome, endereço, tipo e data de abertura.
+      - name: contas
+        description: Tabela fonte de contas com número da conta, cliente titular, agência, colaborador responsável, tipo de conta, saldos e datas de abertura e de último lançamento.
+      - name: transacoes
+        description: Tabela fonte de transações com código, conta, data, tipo e valor de cada transação realizada.
