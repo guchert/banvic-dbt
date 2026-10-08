@@ -1,27 +1,47 @@
 with
     transacoes as (
-        select *
+        select
+            pk_transacao
+            , fk_conta
+            , data_transacao
+            , ts_transacao
+            , nome_transacao
+            , valor_transacao
         from {{ ref('stg_erp__transacoes') }}
     )
 
     , contas as (
-        select *
-        from {{ ref('stg_erp__contas') }}
+        select
+            pk_conta
+            , fk_cliente
+            , fk_agencia
+            , fk_colaborador
+        from {{ ref('int_fato_contas') }}
     )
 
-    , transacoes_enriquecido as (
+    , datas as (
+        select
+            pk_data
+            , data_completa
+        from {{ ref('int_dimensao_datas') }}
+    )
+
+    , joined as (
         select
             transacoes.pk_transacao
             , transacoes.fk_conta
             , contas.fk_cliente
             , contas.fk_agencia
             , contas.fk_colaborador
-            , transacoes.data_transacao as fk_data
+            , datas.pk_data as fk_data
+            , transacoes.data_transacao
             , transacoes.ts_transacao
             , transacoes.nome_transacao
             , transacoes.valor_transacao
         from transacoes
         left join contas on transacoes.fk_conta = contas.pk_conta
+        left join datas on transacoes.data_transacao = datas.data_completa
     )
-    select *
-    from transacoes_enriquecido
+
+select *
+from joined
