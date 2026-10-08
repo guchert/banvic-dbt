@@ -35,6 +35,19 @@ models:
   my_new_project:
     +database: dev
     +pre-hook: "USE CATALOG dev"
+    staging:
+      +schema: staging
+      +materialized: view
+      erp_banvic:
+        +materialized: table
+
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+
+    marts:
+      +schema: marts
+      +materialized: table
 
 seeds:
   my_new_project:
@@ -42,4 +55,4 @@ seeds:
     +pre-hook: "USE CATALOG dev"
     banvic:
       +schema: erp_banvic
-      +enabled: true
+      +enabled: false
